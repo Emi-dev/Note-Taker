@@ -1,7 +1,7 @@
 // include the path pacakge to get the correct file path for the html
 const path = require("path");
 
-function htmlPath(app) {
+function htmlRoutes(app) {
     // when the user visit the page with /notes path, show the the content of notes.html
     app.get("/notes", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/notes.html"));
@@ -13,4 +13,4 @@ function htmlPath(app) {
     });
 }
 
-module.exports = htmlPath;
+module.exports = htmlRoutes;

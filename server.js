@@ -8,9 +8,13 @@ const app = express();
 // or 8080 if there is no environment variable PORT
 const PORT = process.env.PORT || 8080;
 
-// set up the Express app to handle data parsing
+// use the express.urlencoded built-in middleware function to parses incoming requests with urlencoded payloads
 app.use(express.urlencoded({ extended: true }));
+// use the express.json built-in middleware function to parses incoming requests with JSON payloads 
 app.use(express.json());
+// use the express.static built-in middleware function to server static files
+// withouth this, index.js can't be found
+app.use(express.static('public'));
 
 // give the server a "map" of how to respond when users visit or request data from various URLs
 require("./routes/apiRoutes")(app);
