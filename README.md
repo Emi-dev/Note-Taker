@@ -10,11 +10,11 @@ An application that can be used to write, save, and delete notes.
 This application uses an express backend and saves and retrieves note data from a JSON file.
 Users can create and save notes, view previously saved notes, and delete previously saved notes.
 
-![Note Taker](images/prompt.png)
-![Notes](images/team.png)
+![Note Taker](images/NoteTaker.png)
+![Notes](images/Notes.png)
 
 ### Link
-[Click here to use the Note Taker](https://emi-dev.github.io/Template-Engine-Employee-Summary/output/team.html)
+[Click here to use the Note Taker](https://stormy-reef-03325.herokuapp.com/)
 
 ### Files
 * `server.js`
