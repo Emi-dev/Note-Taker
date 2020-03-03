@@ -15,7 +15,19 @@ function apiRoutes(app) {
         const newNote = req.body;   // get the new note that the user entered
         newNote.id = id;    // set the "id" key with the generated id
         db.push(newNote); 
-        res.json(newNote);
+        res.json(db);
+    });
+
+    // DELETE /api/notes/:id - when the user click on the delete button, remove the note with the specified id from db.json
+    app.delete("/api/notes/:id", function(req, res) {
+        // get the index of the object with the given id
+        const noteIndex = db.findIndex(function(note) {
+            console.log("typeof(note)",typeof(note));
+            return note.id === req.params.id;
+        });
+        // remove the note(object) from db(array) and return the array after the removal
+        db.splice(noteIndex, 1);    
+        res.json(db);
     });
 }
 
