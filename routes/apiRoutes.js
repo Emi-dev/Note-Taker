@@ -22,7 +22,6 @@ function apiRoutes(app) {
     app.delete("/api/notes/:id", function(req, res) {
         // get the index of the object with the given id
         const noteIndex = db.findIndex(function(note) {
-            console.log("typeof(note)",typeof(note));
             return note.id === req.params.id;
         });
         // remove the note(object) from db(array) and return the array after the removal
