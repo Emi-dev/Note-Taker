@@ -1,5 +1,6 @@
-// load data
-const db = require("../db/db.json");
+const fs = require("fs");
+const path = require("path");
+const db = require("../db/db.json");    // load data
 // include shortid package - generate unique id
 const shortid = require("shortid");
 
@@ -14,8 +15,9 @@ function apiRoutes(app) {
         const id = shortid.generate();  // initialize/assign the variable "id" with a generated unique id
         const newNote = req.body;   // get the new note that the user entered
         newNote.id = id;    // set the "id" key with the generated id
-        db.push(newNote); 
-        res.json(db);
+        db.push(newNote);
+        writeToDB();
+        res.json(newNote);
     });
 
     // DELETE /api/notes/:id - when the user click on the delete button, remove the note with the specified id from db.json
@@ -25,9 +27,17 @@ function apiRoutes(app) {
             return note.id === req.params.id;
         });
         // remove the note(object) from db(array) and return the array after the removal
-        db.splice(noteIndex, 1);    
+        db.splice(noteIndex, 1);   
+        writeToDB();
         res.json(db);
     });
 }
 
+// write to db.json
+function writeToDB() {
+    fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(db), function(err) {
+        if(err) console.log(err);
+    });    
+}
+ 
 module.exports = apiRoutes;
